@@ -1,9 +1,11 @@
-package br.com.adaBank.model;
+package br.com.adaBank.service;
 
 import java.time.LocalDateTime;
 
 
 import br.com.adaBank.interfaces.OperacoesBasicas;
+import br.com.adaBank.model.Conta.ContaBancaria;
+import br.com.adaBank.model.extrato.ExtratoLancamento;
 
 
 /**
@@ -22,7 +24,7 @@ public abstract class ContaBancariaOperacoesBasicasImpl extends ContaBancaria im
 		double valorAtualizado = valor * this.getUsuario().getClassificacao().taxa;
 		if (this.getSaldo() < valorAtualizado) {
 				System.out.println("Saldo Insuficiente");				
-				this.historicoOperacoes.add( new ExtratoLancamento(LocalDateTime.now(), "SAQUE", valor, 0.0, 
+				this.historicoOperacoes.add( new ExtratoLancamento(LocalDateTime.now(), "SAQUE", valor, 0.0,
 						this.getUsuario(), this.getUsuario(), "SAQUE NAO REALIZADO"));
 				this.dataAtualizacao = LocalDateTime.now();
 				} else { // TEM SALDO

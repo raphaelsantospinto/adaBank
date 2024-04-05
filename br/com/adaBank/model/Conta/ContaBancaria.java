@@ -1,17 +1,19 @@
-package br.com.adaBank.model;
+package br.com.adaBank.model.Conta;
 
 import br.com.adaBank.enums.StatusCadastral;
+import br.com.adaBank.model.extrato.ExtratoLancamento;
+import br.com.adaBank.model.usuario.Usuario;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public abstract class ContaBancaria {
-	int id;
-	double saldo;
-	ArrayList<br.com.adaBank.model.ExtratoLancamento> historicoOperacoes;
-	LocalDateTime dataAtualizacao;
-	StatusCadastral statusCadastral;
-	br.com.adaBank.model.Usuario usuario;
+	protected int id;
+	protected double saldo;
+	protected ArrayList<ExtratoLancamento> historicoOperacoes;
+	protected LocalDateTime dataAtualizacao;
+	protected StatusCadastral statusCadastral;
+	protected Usuario usuario;
 	
 	
 	//Getters and Setters

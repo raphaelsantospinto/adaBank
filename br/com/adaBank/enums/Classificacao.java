@@ -6,11 +6,15 @@ public enum Classificacao {
 	PESSOA_JURIDICA (1.05);
 
 	
-	public final double taxa; 
+	public final double taxa;
+
 	
 	private Classificacao(double taxa) {
 		this.taxa = taxa;
 	}
-	
-	
+
+
+	public double getTaxa() {
+		return taxa;
+	}
 }

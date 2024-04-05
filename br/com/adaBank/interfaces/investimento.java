@@ -1,6 +1,6 @@
 package br.com.adaBank.interfaces;
 
-import br.com.adaBank.model.ContaBancaria;
+import br.com.adaBank.model.Conta.ContaBancaria;
 
 public interface investimento {
 

@@ -1,5 +1,6 @@
-package br.com.adaBank.model;
+package br.com.adaBank.model.Conta;
 import br.com.adaBank.interfaces.investimento;
+import br.com.adaBank.service.ContaBancariaOperacoesBasicasImpl;
 
 public class ContaCorrente extends ContaBancariaOperacoesBasicasImpl implements investimento{
 	

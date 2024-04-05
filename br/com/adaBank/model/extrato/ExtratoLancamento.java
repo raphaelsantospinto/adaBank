@@ -1,4 +1,6 @@
-package br.com.adaBank.model;
+package br.com.adaBank.model.extrato;
+
+import br.com.adaBank.model.usuario.Usuario;
 
 import java.time.LocalDateTime;
 

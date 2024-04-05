@@ -1,9 +1,6 @@
 package br.com.adaBank.interfaces;
 
-import java.time.LocalDateTime;
-
-import br.com.adaBank.model.ContaBancaria;
-import br.com.adaBank.model.Usuario;
+import br.com.adaBank.model.Conta.ContaBancaria;
 
 public interface OperacoesBasicas {
 	public void sacar(double valor);
