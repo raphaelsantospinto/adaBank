@@ -7,7 +7,7 @@ import br.com.adaBank.model.usuario.Usuario;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public abstract class ContaBancaria {
+public abstract class ContaBancaria{
 	protected int id;
 	protected double saldo;
 	protected ArrayList<ExtratoLancamento> historicoOperacoes;
@@ -53,11 +53,16 @@ public abstract class ContaBancaria {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	} 
-	
-	
-	
-	
-	
+	}
 
+
+	public ContaBancaria() {
+		this.id = 0; // quando for usar banco de dados a gente cria um novo
+		this.historicoOperacoes = new ArrayList<ExtratoLancamento>();
+		this.dataAtualizacao = LocalDateTime.now();
+		this.saldo = 0.0;
+		this.usuario = new Usuario();
+		this.statusCadastral = StatusCadastral.ATIVO;
+
+	}
 }

@@ -1,24 +1,17 @@
 package br.com.adaBank.service;
 
-import java.time.LocalDateTime;
-
-
 import br.com.adaBank.interfaces.OperacoesBasicas;
 import br.com.adaBank.model.Conta.ContaBancaria;
 import br.com.adaBank.model.extrato.ExtratoLancamento;
 
+import java.time.LocalDateTime;
+
 
 /**
  * Classe que fornece uma implementação generica para as operações basicas. 
- * TODO Precisa refatorar em uma classe service com metodos auxiliares. 
+ *
  */
-public abstract class ContaBancariaOperacoesBasicasImpl extends ContaBancaria implements OperacoesBasicas {
-	
-	
-	
-	
-
-
+public class ContaBancariaService extends ContaBancaria implements OperacoesBasicas {
 	@Override
 	public void sacar(double valor){
 		double valorAtualizado = valor * this.getUsuario().getClassificacao().taxa;
@@ -45,29 +38,30 @@ public abstract class ContaBancariaOperacoesBasicasImpl extends ContaBancaria im
 
 	@Override
 	public boolean transferir(ContaBancaria contaBancariaDestino, double valor) {
-		double valorAtualizado = valor * this.getUsuario().getClassificacao().taxa;
-		
+
+		double valorComTaxa = valor * this.getUsuario().getClassificacao().taxa; //RN
 		// PASSO 1 - Verificar a existencia de usuario destino.
-		if(contaBancariaDestino.getUsuario().equals( null)){
+		if(contaBancariaDestino.getUsuario()== null){
 			System.out.println("Conta bancaria destino Nula. operação cancelada");
 			return false;
-		} 
+		}
 		// PASSO 2 - CASO VALOR DA TRANSFERENCIA SUPERIOR AO SALDO
-		if (this.getSaldo() < valorAtualizado) {
-			System.out.println("Saldo Insuficiente");				
-			this.historicoOperacoes.add( new ExtratoLancamento(LocalDateTime.now(), "TRANSFERENCIA", valor, 0.0, 
+
+		if (this.getSaldo() < valorComTaxa) {
+			System.out.println("Saldo Insuficiente");
+			this.historicoOperacoes.add( new ExtratoLancamento(LocalDateTime.now(), "TRANSFERENCIA", valor, 0.0,
 					this.getUsuario(), this.getUsuario(), "TRANSFERENCIA NAO REALIZADA POR FALTA DE SALDO"));
 			this.dataAtualizacao = LocalDateTime.now();
 			return false;
 			}
-		// PASSO 3 - Realiza reducao na conta
-		
-		this.setSaldo(this.getSaldo() - valor);
-				
+		// PASSO 3 - Realiza reducao na conta origem
+
+		this.setSaldo(this.getSaldo() - valorComTaxa);
+
 		//passo 4 - deposita
-		
-		this.setSaldo(this.getSaldo() + valor);
-		this.historicoOperacoes.add(new ExtratoLancamento(LocalDateTime.now(), "TRANSFERENCIA", valor, valorAtualizado,
+
+		contaBancariaDestino.setSaldo(this.getSaldo() + valorComTaxa);
+		this.historicoOperacoes.add(new ExtratoLancamento(LocalDateTime.now(), "TRANSFERENCIA", valor, valorComTaxa,
 				this.getUsuario(), contaBancariaDestino.getUsuario(), "DEPOSITO REALIZADO COM SUCESSO"));
 		return true;
 	}

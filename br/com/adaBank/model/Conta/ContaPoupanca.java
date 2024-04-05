@@ -1,9 +1,10 @@
 package br.com.adaBank.model.Conta;
 
-import br.com.adaBank.service.ContaBancariaOperacoesBasicasImpl;
+import br.com.adaBank.service.ContaBancariaService;
 
-public class ContaPoupanca extends ContaBancariaOperacoesBasicasImpl {
-	
-	
+public class ContaPoupanca extends ContaBancariaService {
 
+    public ContaPoupanca() {
+        super();
+    }
 }

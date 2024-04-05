@@ -1,11 +1,10 @@
 package br.com.adaBank.model.usuario;
 
-import java.time.LocalDateTime;
-
-
 import br.com.adaBank.enums.Classificacao;
 import br.com.adaBank.enums.StatusCadastral;
 import br.com.adaBank.model.Conta.ContaCorrente;
+
+import java.time.LocalDateTime;
 
 public class Usuario {
 	protected int id;
@@ -59,9 +58,12 @@ public class Usuario {
 		ContaCorrente contaCorrente = new ContaCorrente();
 		contaCorrente.setUsuario(this);
 	}
-	
 
-	//CONSTRUTOR SEM CAMPOS
+	public Usuario(){
+
+	}
+
+
 	
 	
 	
