@@ -11,22 +11,21 @@ import java.time.LocalDateTime;
  * Classe que fornece uma implementação generica para as operações basicas. 
  *
  */
-public class ContaBancariaService extends ContaBancaria implements OperacoesBasicas {
+public abstract class ContaBancariaService extends ContaBancaria implements OperacoesBasicas {
 	@Override
 	public void sacar(double valor){
 		double valorAtualizado = valor * this.getUsuario().getClassificacao().taxa;
-		if (this.getSaldo() < valorAtualizado) {
+		if(this.getSaldo() < valorAtualizado) {
 				System.out.println("Saldo Insuficiente");				
 				this.historicoOperacoes.add( new ExtratoLancamento(LocalDateTime.now(), "SAQUE", valor, 0.0,
 						this.getUsuario(), this.getUsuario(), "SAQUE NAO REALIZADO"));
-				this.dataAtualizacao = LocalDateTime.now();
-				} else { // TEM SALDO
+        } else { // TEM SALDO
 					this.setSaldo(this.getSaldo() - valorAtualizado);
 					this.historicoOperacoes.add(new ExtratoLancamento(LocalDateTime.now(), "SAQUE", valorAtualizado, valorAtualizado,
 							this.getUsuario(), null, "SAQUE REALIZADO"));
-					this.dataAtualizacao = LocalDateTime.now();					
-				}
-	}	
+        }
+        this.dataAtualizacao = LocalDateTime.now();
+    }
 		
 	@Override
 	public boolean depositar(double valor) {
@@ -57,12 +56,15 @@ public class ContaBancariaService extends ContaBancaria implements OperacoesBasi
 		// PASSO 3 - Realiza reducao na conta origem
 
 		this.setSaldo(this.getSaldo() - valorComTaxa);
+		this.historicoOperacoes.add(new ExtratoLancamento(LocalDateTime.now(), "TRANSFERENCIA", valor, valorComTaxa,
+				this.getUsuario(), contaBancariaDestino.getUsuario(), "DEBITO DE TRANSFERENCIA"));
+
 
 		//passo 4 - deposita
 
 		contaBancariaDestino.setSaldo(this.getSaldo() + valorComTaxa);
-		this.historicoOperacoes.add(new ExtratoLancamento(LocalDateTime.now(), "TRANSFERENCIA", valor, valorComTaxa,
-				this.getUsuario(), contaBancariaDestino.getUsuario(), "DEPOSITO REALIZADO COM SUCESSO"));
+		contaBancariaDestino.getHistoricoOperacoes().add(new ExtratoLancamento(LocalDateTime.now(), "TRANSFERENCIA", valor, valorComTaxa,
+				this.getUsuario(), contaBancariaDestino.getUsuario(), "CREDITO DE TRANSFERENCIA"));
 		return true;
 	}
 
@@ -76,5 +78,5 @@ public class ContaBancariaService extends ContaBancaria implements OperacoesBasi
 		
 		
 	}
-	
+
 }

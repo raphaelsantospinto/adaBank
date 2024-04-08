@@ -1,24 +1,18 @@
 package br.com.adaBank.service;
 
-import br.com.adaBank.enums.Classificacao;
-import br.com.adaBank.enums.StatusCadastral;
-import br.com.adaBank.model.Conta.ContaPoupanca;
+import br.com.adaBank.model.Conta.ContaCorrente;
 import br.com.adaBank.model.usuario.Usuario;
 
-import java.time.LocalDateTime;
-
 public class UsuarioService extends Usuario {
+// CLASSE PARA ACOES DO USUARIO. Alterar dados do usuario, basicamente
 
-    public UsuarioService(int id, Classificacao classificacao, String nome, LocalDateTime data_cadastro, StatusCadastral statusCadastral) {
-        super(id, classificacao, nome, data_cadastro, statusCadastral);
+    public Usuario criarUsuarioComContaCorrente(){
+        Usuario usuario = new Usuario();
+        ContaCorrente contaCorrente = new ContaCorrente();
+        contaCorrente.setUsuario(usuario);
+        return usuario;
     }
 
-    public boolean RequererContaPoupanca(){
-        ContaPoupanca contaPoupanca = new ContaPoupanca();
-        contaPoupanca.setUsuario(this);
-        return true;
-
-    }
 
 
 }

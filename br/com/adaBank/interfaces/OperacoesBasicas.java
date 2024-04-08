@@ -9,7 +9,10 @@ public interface OperacoesBasicas {
 	public double consultarSaldo();
 //	public void registrarOperacao(String tipoOperacao, double valorPretendido, double valorReal,
 //			 Usuario usuarioDestino, String observacao);
+
 	
-	
+
+
+
 
 }

@@ -1,15 +1,21 @@
 package br.com.adaBank.model.Conta;
 
-import br.com.adaBank.interfaces.Rendimento;
-import br.com.adaBank.service.ContaBancariaService;
+import br.com.adaBank.enums.StatusCadastral;
+import br.com.adaBank.model.extrato.ExtratoLancamento;
+import br.com.adaBank.model.usuario.Usuario;
+import br.com.adaBank.service.ContaInvestimentoService;
 
-public class ContaInvestimento extends ContaBancariaService implements Rendimento{
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-	@Override
-	public void render(double taxaMensal, int diasDeRendimento) {
-	}
+public class ContaInvestimento extends ContaInvestimentoService {
+
 
 	public ContaInvestimento() {
+
+	}
+
+	public ContaInvestimento(int id, double saldo, ArrayList<ExtratoLancamento> historicoOperacoes, LocalDateTime dataAtualizacao, StatusCadastral statusCadastral, Usuario usuario) {
 		super();
 	}
 }

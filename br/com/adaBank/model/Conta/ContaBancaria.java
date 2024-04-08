@@ -57,12 +57,19 @@ public abstract class ContaBancaria{
 
 
 	public ContaBancaria() {
-		this.id = 0; // quando for usar banco de dados a gente cria um novo
 		this.historicoOperacoes = new ArrayList<ExtratoLancamento>();
-		this.dataAtualizacao = LocalDateTime.now();
-		this.saldo = 0.0;
-		this.usuario = new Usuario();
-		this.statusCadastral = StatusCadastral.ATIVO;
-
+		this.historicoOperacoes.add(new ExtratoLancamento(LocalDateTime.now(), "CRIACAO DA CONTA", 0.0, 0.0,
+		null, null, "CRIACAO DA CONTA"));
 	}
+
+	public ContaBancaria(int id, double saldo, ArrayList<ExtratoLancamento> historicoOperacoes, LocalDateTime dataAtualizacao, StatusCadastral statusCadastral, Usuario usuario) {
+		this.id = id;
+		this.saldo = saldo;
+		this.historicoOperacoes = historicoOperacoes;
+		this.dataAtualizacao = dataAtualizacao;
+		this.statusCadastral = statusCadastral;
+		this.usuario = usuario;
+	}
+
+
 }

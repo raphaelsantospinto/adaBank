@@ -2,7 +2,6 @@ package br.com.adaBank.model.usuario;
 
 import br.com.adaBank.enums.Classificacao;
 import br.com.adaBank.enums.StatusCadastral;
-import br.com.adaBank.model.Conta.ContaCorrente;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +11,7 @@ public class Usuario {
 	protected String nome;
 	protected LocalDateTime data_cadastro;
 	protected StatusCadastral statusCadastral;
-	
+
 	
 	// GETTERS AND SETTERS
 	public int getId() {
@@ -45,28 +44,20 @@ public class Usuario {
 	public void setStatusCadastral(StatusCadastral statusCadastral) {
 		this.statusCadastral = statusCadastral;
 	}
-	
-	// CONSTRUTOR COM TODOS OS CAMPOS, que tambem cria uma conta corrente e associa a conta (RN)
-	
-	public Usuario(int id, Classificacao classificacao, String nome, LocalDateTime data_cadastro,StatusCadastral statusCadastral) {
-		super();
+
+
+	public Usuario(int id, Classificacao classificacao, String nome, LocalDateTime data_cadastro, StatusCadastral statusCadastral) {
 		this.id = id;
 		this.classificacao = classificacao;
 		this.nome = nome;
 		this.data_cadastro = data_cadastro;
 		this.statusCadastral = statusCadastral;
-		ContaCorrente contaCorrente = new ContaCorrente();
-		contaCorrente.setUsuario(this);
 	}
 
 	public Usuario(){
 
+
+
+
 	}
-
-
-	
-	
-	
-	
-
 }

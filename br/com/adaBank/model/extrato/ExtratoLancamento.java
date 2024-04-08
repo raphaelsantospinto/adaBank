@@ -68,7 +68,6 @@ import java.time.LocalDateTime;
 	//Construtor usando campos
 	public ExtratoLancamento(LocalDateTime dataOperacao, String tipoOperacao, double valorPretendido, double valorReal,
 			Usuario usuarioOrigem, Usuario usuarioDestino, String observacao) {
-		super();
 		this.dataOperacao = dataOperacao;
 		this.tipoOperacao = tipoOperacao;
 		this.valorPretendido = valorPretendido;
@@ -77,8 +76,7 @@ import java.time.LocalDateTime;
 		this.usuarioDestino = usuarioDestino;
 		Observacao = observacao;
 	}
-	
-	
-	
 
-}
+		public ExtratoLancamento() {
+		}
+	}
