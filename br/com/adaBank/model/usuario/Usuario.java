@@ -2,6 +2,7 @@ package br.com.adaBank.model.usuario;
 
 import br.com.adaBank.enums.Classificacao;
 import br.com.adaBank.enums.StatusCadastral;
+import br.com.adaBank.model.Conta.ContaCorrente;
 
 import java.time.LocalDateTime;
 
@@ -54,10 +55,12 @@ public class Usuario {
 		this.statusCadastral = statusCadastral;
 	}
 
-	public Usuario(){
+	public Usuario(){}
 
-
-
-
+	public Usuario criarUsuarioComContaCorrente(){
+		Usuario usuario = new Usuario();
+		ContaCorrente contaCorrente = new ContaCorrente();
+		contaCorrente.setUsuario(usuario);
+		return usuario;
 	}
 }

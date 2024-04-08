@@ -5,6 +5,11 @@ import br.com.adaBank.model.Conta.ContaInvestimento;
 import br.com.adaBank.model.Conta.ContaPoupanca;
 import br.com.adaBank.model.usuario.Usuario;
 
+/*
+* ESTA CLASSE NÃO POSSUI IMPLEMENTACAO NO CODIGO. CRIEI UM CONJUNTO DE METODOS ESTATICOS PARA UM PROJETO
+* DE "GERENCIADOR DE OPERAÇÕES" MAIS ROBUSTO. Basicamente nao foi p frente
+* */
+
 public class ContaBancariaFactory {
 
     public static ContaCorrente criarContaCorrente(Usuario usuario){

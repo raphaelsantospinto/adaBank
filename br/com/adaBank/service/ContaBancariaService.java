@@ -73,7 +73,7 @@ public abstract class ContaBancariaService extends ContaBancaria implements Oper
 		this.dataAtualizacao = LocalDateTime.now();
 		System.out.println("Saldo consultado - Valor: " + this.getSaldo());
 		this.historicoOperacoes.add(new ExtratoLancamento(LocalDateTime.now(), "CONSULTA SALDO", this.getSaldo(), this.getSaldo(),
-				this.getUsuario(), null, "CONSLTA SAQUE"));
+				this.getUsuario(), null, "CONSLTA SALDO"));
 		return this.getSaldo();	
 		
 		
