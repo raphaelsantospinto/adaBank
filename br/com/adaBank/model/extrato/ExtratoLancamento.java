@@ -79,4 +79,17 @@ import java.time.LocalDateTime;
 
 		public ExtratoLancamento() {
 		}
+
+		@Override
+		public String toString() {
+			return "ExtratoLancamento{" +
+					"dataOperacao=" + dataOperacao +
+					", tipoOperacao='" + tipoOperacao + '\'' +
+					", valorPretendido=" + valorPretendido +
+					", valorReal=" + valorReal +
+					", usuarioOrigem=" + usuarioOrigem +
+					", usuarioDestino=" + usuarioDestino +
+					", Observacao='" + Observacao + '\'' +
+					'}';
+		}
 	}

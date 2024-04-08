@@ -39,15 +39,10 @@ public class AdaBankTest {
 
         c1.depositar(1500.00);
         c1.sacar(100.00);
-
         c2.depositar(2500.00);
         c2.sacar(200.00);
-
         c3.depositar(1000.00);
         c3.sacar(50.0);
-
-
-
         c1.transferir(c2, 100.00);
         c2.transferir(c1, 100.0);
 
@@ -85,8 +80,7 @@ public class AdaBankTest {
         a1 = c1.getHistoricoOperacoes();
         System.out.println( " ---- EXTRATO CONTA ID " + c1.getId()+ " ---- ");
         a1.forEach((e)-> {
-            System.out.println(e.getDataOperacao() +" , "+ e.getTipoOperacao() +" , "+ e.getValorPretendido()+" , "+ e.getValorReal()+
-                      " , "+e.getObservacao());
+            System.out.println(e.toString());
         });
 
 
