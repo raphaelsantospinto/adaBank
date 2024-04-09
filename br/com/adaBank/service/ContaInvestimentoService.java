@@ -9,5 +9,6 @@ public abstract class ContaInvestimentoService extends ContaBancariaService impl
     public void renderMensal() {
         this.setSaldo(this.getSaldo()*this.getUsuario().getClassificacao().getRendimentos());
 
+
     }
 }

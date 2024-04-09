@@ -8,7 +8,9 @@ import br.com.adaBank.model.Conta.ContaInvestimento;
 import br.com.adaBank.model.Conta.ContaPoupanca;
 import br.com.adaBank.model.extrato.ExtratoLancamento;
 import br.com.adaBank.model.usuario.Usuario;
+import org.w3c.dom.ls.LSOutput;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
@@ -68,8 +70,12 @@ public class AdaBankTest {
         System.out.println("Extrato C4");
         imprimirExtratoSimplificadoNoConsole(c4);
 
+        LocalDate ld = LocalDate.now();
+        System.out.println(ld.toString());
 
     }
+
+
 
 
 

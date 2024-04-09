@@ -15,7 +15,7 @@ public class ContaCorrente extends ContaCorrenteService {
 	public ContaCorrente(){
 		this.historicoOperacoes = new ArrayList<ExtratoLancamento>();
 		this.historicoOperacoes.add(new ExtratoLancamento(LocalDateTime.now(), "CRIACAO DA CONTA", 0.0, 0.0,
-				null, null, "CRIACAO DA CONTA"));
+				null, null, "CRIACAO DA CONTA CORRENTE"));
 
 	}
 

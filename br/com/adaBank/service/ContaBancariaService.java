@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public abstract class ContaBancariaService extends ContaBancaria implements OperacoesBasicas {
 	@Override
 	public void sacar(double valor){
-		double valorAtualizado = valor * this.getUsuario().getClassificacao().taxa;
+		double valorAtualizado = valor * this.getUsuario().getClassificacao().getTaxa();
 		if(this.getSaldo() < valorAtualizado) {
 				System.out.println("Saldo Insuficiente");				
 				this.historicoOperacoes.add( new ExtratoLancamento(LocalDateTime.now(), "SAQUE", valor, 0.0,
@@ -38,7 +38,7 @@ public abstract class ContaBancariaService extends ContaBancaria implements Oper
 	@Override
 	public boolean transferir(ContaBancaria contaBancariaDestino, double valor) {
 
-		double valorComTaxa = valor * this.getUsuario().getClassificacao().taxa; //RN
+		double valorComTaxa = valor * this.getUsuario().getClassificacao().getTaxa(); //RN
 		// PASSO 1 - Verificar a existencia de usuario destino.
 		if(contaBancariaDestino.getUsuario()== null){
 			System.out.println("Conta bancaria destino Nula. operação cancelada");
