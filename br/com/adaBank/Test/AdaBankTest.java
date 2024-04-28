@@ -15,9 +15,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static br.com.adaBank.utils.AdaBankPromocaoLoader.executarProcessamento;
+
 
 public class AdaBankTest {
-
+/*
     public static void main(String[] args) {
         System.out.println("Criação dos Usuarios...");
         Usuario u1 = criarUsuarioPF();
@@ -74,9 +76,15 @@ public class AdaBankTest {
         System.out.println(ld.toString());
 
     }
+*/
 
-
-
+    public static void main(String[] args) {
+        try {
+            executarProcessamento();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
