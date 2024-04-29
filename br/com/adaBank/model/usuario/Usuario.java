@@ -7,7 +7,7 @@ import br.com.adaBank.model.Conta.ContaCorrente;
 import java.time.LocalDateTime;
 
 public class Usuario {
-	protected int id;
+	protected String id;
 	protected Classificacao classificacao;
 	protected String nome;
 	protected LocalDateTime data_cadastro;
@@ -15,10 +15,10 @@ public class Usuario {
 
 	
 	// GETTERS AND SETTERS
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public Classificacao getClassificacao() {
@@ -47,7 +47,7 @@ public class Usuario {
 	}
 
 
-	public Usuario(int id, Classificacao classificacao, String nome, LocalDateTime data_cadastro, StatusCadastral statusCadastral) {
+	public Usuario(String id, Classificacao classificacao, String nome, LocalDateTime data_cadastro, StatusCadastral statusCadastral) {
 		this.id = id;
 		this.classificacao = classificacao;
 		this.nome = nome;
