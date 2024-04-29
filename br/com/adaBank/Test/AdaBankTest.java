@@ -3,19 +3,15 @@ package br.com.adaBank.Test;
 import br.com.adaBank.enums.Classificacao;
 import br.com.adaBank.enums.StatusCadastral;
 import br.com.adaBank.model.Conta.ContaBancaria;
-import br.com.adaBank.model.Conta.ContaCorrente;
-import br.com.adaBank.model.Conta.ContaInvestimento;
-import br.com.adaBank.model.Conta.ContaPoupanca;
 import br.com.adaBank.model.extrato.ExtratoLancamento;
 import br.com.adaBank.model.usuario.Usuario;
-import org.w3c.dom.ls.LSOutput;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static br.com.adaBank.utils.AdaBankPromocaoLoader.executarProcessamento;
+import static br.com.adaBank.utils.AdaBankPromocaoLoader.executarProcessamentoPromocionalPF;
+import static br.com.adaBank.utils.AdaBankPromocaoLoader.executarProcessamentoPromocionalPJ;
 
 
 public class AdaBankTest {
@@ -80,11 +76,13 @@ public class AdaBankTest {
 
     public static void main(String[] args) {
         try {
-            executarProcessamento();
+            executarProcessamentoPromocionalPF();
+            executarProcessamentoPromocionalPJ();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
 
 
@@ -103,28 +101,30 @@ public class AdaBankTest {
     private static ArrayList<ExtratoLancamento> criaExtratoLancamentoBasico(){
         ArrayList<ExtratoLancamento> a1 = new ArrayList<>();
         a1.add(new ExtratoLancamento(LocalDateTime.now(), "Criacao de Conta", 0.0, 0.0,
-        null, null, "Criacao de Conta"));
+                null, null, "Criacao de Conta"));
         return a1;
     }
-    private static ContaPoupanca criarContaPoupanca() {
-        // int id, double saldo, ArrayList<ExtratoLancamento> historicoOperacoes, LocalDateTime dataAtualizacao, StatusCadastral statusCadastral, Usuario usuario
-        return new ContaPoupanca(new Random().nextInt(1, 10000),0.0,criaExtratoLancamentoBasico(),LocalDateTime.now(),StatusCadastral.ATIVO,criarUsuarioPF());
-    }
-    private static ContaCorrente criarContaCorrente() {
-        // int id, double saldo, ArrayList<ExtratoLancamento> historicoOperacoes, LocalDateTime dataAtualizacao, StatusCadastral statusCadastral, Usuario usuario
-        return new ContaCorrente(new Random().nextInt(1, 10000),0.0, criaExtratoLancamentoBasico(), LocalDateTime.now(), StatusCadastral.ATIVO, criarUsuarioPF());
-    }
-    private static ContaInvestimento criarContaInvestimento() {
-        return new ContaInvestimento(new Random().nextInt(1, 10000),0.0, criaExtratoLancamentoBasico(), LocalDateTime.now(), StatusCadastral.ATIVO, criarUsuarioPF());
-    }
-    private static Usuario criarUsuarioPF(){
-        return new Usuario(new Random().nextInt(500, 10000), Classificacao.PESSOA_FISICA, "USUARIO TESTE "+ new Random().nextInt(1, 100), LocalDateTime.now(), StatusCadastral.ATIVO);
+//    private static ContaPoupanca criarContaPoupanca() {
+//        // int id, double saldo, ArrayList<ExtratoLancamento> historicoOperacoes, LocalDateTime dataAtualizacao, StatusCadastral statusCadastral, Usuario usuario
+//        return new ContaPoupanca(String.valueOf(new Random().nextInt(1, 10000)),0.0,criaExtratoLancamentoBasico(),LocalDateTime.now(), StatusCadastral.ATIVO,criarUsuarioPF());
+//    }
+//    public static ContaCorrente criarContaCorrente() {
+//        // int id, double saldo, ArrayList<ExtratoLancamento> historicoOperacoes, LocalDateTime dataAtualizacao, StatusCadastral statusCadastral, Usuario usuario
+//        return new ContaCorrente(String.valueOf(new Random().nextInt(1, 10000)),0.0, criaExtratoLancamentoBasico(), LocalDateTime.now(), StatusCadastral.ATIVO, criarUsuarioPF());
+//    }
+//    private static ContaInvestimento criarContaInvestimento() {
+//        return new ContaInvestimento(String.valueOf(new Random().nextInt(1, 10000)),0.0, criaExtratoLancamentoBasico(), LocalDateTime.now(), StatusCadastral.ATIVO, criarUsuarioPF());
+//    }
+//    private static Usuario criarUsuarioPF(){
+//        return new Usuario(new Random().nextInt(500, 10000), Classificacao.PESSOA_FISICA, "USUARIO TESTE "+ new Random().nextInt(1, 100), LocalDateTime.now(), StatusCadastral.ATIVO);
+//
+//    }
 
-    }
     private static Usuario criarUsuarioPJ() {
-        return new Usuario(new Random().nextInt(1, 10000), Classificacao.PESSOA_JURIDICA, "Usuario Teste",
+        return new Usuario(String.valueOf(new Random().nextInt(1, 10000)), Classificacao.PESSOA_JURIDICA, "Usuario Teste",
                 LocalDateTime.now(), StatusCadastral.ATIVO);
 
     }
+
 
 }
