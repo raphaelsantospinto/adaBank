@@ -14,12 +14,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
-@FunctionalInterface
- public interface AdaBankPromocaoLoader {
 
-    abstract boolean load(String path);
+ public class AdaBankPromocaoLoader {
 
-    public static void executarProcessamentoPromocionalPF() throws Exception {
+      public static void executarProcessamentoPromocionalPF() throws Exception {
 
         Path entrada = Path.of("br/com/adaBank/files/pessoas.csv");
         Path saida = Path.of("br/com/adaBank/files/RelatorioDepositosPF.csv");
@@ -31,20 +29,14 @@ import java.util.stream.Stream;
                 .map(linhaCliente -> linhaCliente.split(","))
                 .filter(colunaTipoClientePF -> "2".equals(colunaTipoClientePF[3]))
                 .filter(coluna -> verificarAcima18(coluna[1]))
-                .map((coluna) -> {
-                    Usuario usuario = criarUsuarioPFcomIdeNome(coluna[2],coluna[0]);
-                    ContaCorrente cc = criarContaCorrente(coluna[0], usuario);
-                    cc.depositar(50.0);
-
-                    return usuario.getNome()+","+usuario.getId()+","+usuario.getClassificacao()
-                            +","+cc.getId()+","+cc.getSaldo();
-                })
+                .map((coluna) ->  criarUsuarioPFcomIdeNome(coluna[2], coluna[0]))
+                .map(usuario -> criarContaCorrente(usuario))
+                .map(cc -> getString(cc))
                 .toList();
 
          relatorioPF.forEach(System.out::println);
          Files.write(saida, relatorioPF);
     }
-
     public static void executarProcessamentoPromocionalPJ()throws IOException{
         Path entrada = Path.of("br/com/adaBank/files/pessoas.csv");
         Path saida = Path.of("br/com/adaBank/files/RelatorioDepositosPJ.csv");
@@ -54,20 +46,21 @@ import java.util.stream.Stream;
                 .skip(1)
                 .map(linhaCliente -> linhaCliente.split(","))
                 .filter(coluna -> "1".equals(coluna[3]))
-                .map((coluna) -> {
-                    Usuario usuario = criarUsuarioPJcomIdeNome(coluna[2],coluna[0]);
-                    ContaCorrente cc = criarContaCorrente(coluna[0], usuario);
-                    cc.depositar(50.0);
-
-                    return usuario.getNome()+","+usuario.getId()+","+usuario.getClassificacao()
-                           +","+cc.getId()+","+cc.getSaldo();
-                })
+                .map((coluna) ->  criarUsuarioPJcomIdeNome(coluna[2], coluna[0]))
+                .map(usuario -> criarContaCorrente(usuario))
+                .map(cc -> getString(cc))
                 .toList();
-
         relatorioPF.forEach(System.out::println);
         Files.write(saida, relatorioPF);
 
     }
+
+
+    private static String getString(ContaCorrente cc) {
+        cc.depositar(50.0);
+        return cc.getUsuario().getNome() + "," + cc.getUsuario().getId() + "," + cc.getUsuario().getClassificacao() + "," + cc.getId() + "," + cc.getSaldo();
+    }
+
 
     static Usuario criarUsuarioPJcomIdeNome(String id, String nome) {
         return new Usuario(id,Classificacao.PESSOA_JURIDICA, nome, LocalDateTime.now(), StatusCadastral.ATIVO);
@@ -95,7 +88,7 @@ import java.util.stream.Stream;
         return periodo.getYears() >= 18;
     }
 
-        public static ContaCorrente criarContaCorrente(String nome, Usuario usuario) {
+        public static ContaCorrente criarContaCorrente( Usuario usuario) {
          //int id, double saldo, ArrayList<ExtratoLancamento> historicoOperacoes, LocalDateTime dataAtualizacao, StatusCadastral statusCadastral, Usuario usuario
             ContaCorrente cc = new ContaCorrente();
             cc.setId(new Random().nextInt(1, 999999));

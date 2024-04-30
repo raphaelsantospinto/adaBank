@@ -5,14 +5,13 @@ import br.com.adaBank.enums.StatusCadastral;
 import br.com.adaBank.model.Conta.ContaBancaria;
 import br.com.adaBank.model.extrato.ExtratoLancamento;
 import br.com.adaBank.model.usuario.Usuario;
+import br.com.adaBank.utils.AdaBankPromocaoLoader;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static br.com.adaBank.utils.AdaBankPromocaoLoader.executarProcessamentoPromocionalPF;
-import static br.com.adaBank.utils.AdaBankPromocaoLoader.executarProcessamentoPromocionalPJ;
-
+import static br.com.adaBank.utils.AdaBankPromocaoLoader.*;
 
 public class AdaBankTest {
 /*
@@ -76,8 +75,8 @@ public class AdaBankTest {
 
     public static void main(String[] args) {
         try {
-            executarProcessamentoPromocionalPF();
-            executarProcessamentoPromocionalPJ();
+            AdaBankPromocaoLoader.executarProcessamentoPromocionalPF();
+            AdaBankPromocaoLoader.executarProcessamentoPromocionalPJ();
         } catch (Exception e) {
             e.printStackTrace();
         }
